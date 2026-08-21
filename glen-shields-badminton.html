@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>document.documentElement.classList.add('js');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glen Shields Badminton — Community Coaching in Vaughan</title>
+<meta name="description" content="Glen Shields Badminton is a youth-led, not-for-profit badminton program in Vaughan, Ontario. Free first session for new members, then drop in for $25 or join a 9-class term for $180.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='28' r='17' fill='%23113547'/%3E%3Cpath d='M50 45 L22 92 M50 45 L50 96 M50 45 L78 92' stroke='%23277ca5' stroke-width='7' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+:root{
+  --pale:#b8f5ff;
+  --sky:#64c2ec;
+  --teal:#277ca5;
+  --navy:#113547;
+  --paper:#ffffff;
+  --tint:#f0fbff;
+  --font-display:'Playfair Display', Georgia, serif;
+  --font-body:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --max:1180px;
+  --ease:cubic-bezier(.22,.9,.28,1);
+}
+body{font-family:var(--font-body);color:var(--navy);background:var(--pale);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+button{font-family:inherit;border:none;background:none;cursor:pointer;}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;line-height:1.2;color:var(--navy);}
+.container{max-width:var(--max);margin:0 auto;padding:0 24px;}
+:focus-visible{outline:3px solid var(--sky);outline-offset:3px;}
+
+/* reveal */
+.reveal{opacity:1;transform:none;}
+html.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+html.js .reveal.in-view{opacity:1;transform:none;}
+.reveal.d1{transition-delay:.1s;}
+.reveal.d2{transition-delay:.2s;}
+.reveal.d3{transition-delay:.3s;}
+@media (prefers-reduced-motion:reduce){ html.js .reveal{transition:none;opacity:1;transform:none;} }
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:.95rem;padding:14px 28px;border-radius:8px;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s ease,color .25s ease,border-color .25s ease;white-space:nowrap;}
+.btn-primary{background:var(--teal);color:#fff;}
+.btn-primary:hover{background:var(--sky);color:var(--navy);transform:scale(1.045);}
+.btn-white{background:#fff;color:var(--navy);}
+.btn-white:hover{background:var(--pale);transform:scale(1.045);}
+.btn-outline-teal{border:1px solid var(--teal);color:var(--teal);background:transparent;}
+.btn-outline-teal:hover{background:var(--teal);color:#fff;transform:scale(1.02);}
+.btn-block{width:100%;text-align:center;}
+.btn-sm{padding:10px 20px;font-size:.85rem;border-radius:6px;}
+
+/* header */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:1000;padding:24px 0;transition:background .3s var(--ease),padding .3s var(--ease),box-shadow .3s var(--ease);}
+.site-header.solid{background:var(--navy);padding:16px 0;box-shadow:0 4px 16px rgba(0,0,0,.15);}
+.nav-wrap{max-width:var(--max);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.brand{font-family:var(--font-display);font-weight:700;font-size:1.25rem;letter-spacing:.01em;color:#fff;transition:color .3s ease;}
+.site-header.solid .brand{color:var(--pale);}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-link{font-size:.92rem;font-weight:500;color:rgba(255,255,255,.9);position:relative;padding:4px 0;transition:color .25s ease;}
+.site-header.solid .nav-link{color:rgba(255,255,255,.8);}
+.nav-link:hover{color:#fff;}
+.site-header.solid .nav-link:hover{color:var(--pale);}
+.nav-link.active{color:#fff;}
+.site-header.solid .nav-link.active{color:var(--pale);}
+.nav-link.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:currentColor;border-radius:2px;}
+.nav-register{background:#fff;color:var(--navy);}
+.nav-register:hover{background:var(--pale);}
+.site-header.solid .nav-register{background:var(--teal);color:#fff;}
+.site-header.solid .nav-register:hover{background:var(--sky);color:var(--navy);}
+.hamburger{display:none;flex-direction:column;gap:5px;width:26px;padding:4px;}
+.hamburger span{display:block;height:2px;width:100%;background:#fff;border-radius:2px;transition:transform .3s ease,opacity .3s ease;}
+
+.page{display:none;}
+.page.active{display:block;animation:pagein .45s var(--ease);}
+@keyframes pagein{from{opacity:0;}to{opacity:1;}}
+
+/* home hero */
+.hero{position:relative;height:100vh;min-height:560px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:url('badminton-hero.jpg') center/cover no-repeat;}
+.hero-scrim{position:absolute;inset:0;background:rgba(17,53,71,.6);}
+.hero-inner{position:relative;z-index:2;text-align:center;padding:0 24px;max-width:820px;}
+.hero h1{color:#fff;font-size:clamp(2.6rem,6vw,4.5rem);letter-spacing:-.01em;
+  opacity:0;transform:translateY(24px);animation:heroUp .8s .12s var(--ease) forwards;}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--pale);}
+.hero p{color:rgba(255,255,255,.9);font-weight:300;font-size:1.25rem;max-width:640px;margin:26px auto 0;
+  opacity:0;transform:translateY(24px);animation:heroUp .8s .28s var(--ease) forwards;}
+.hero-cta-wrap{margin-top:38px;opacity:0;transform:translateY(24px);animation:heroUp .8s .44s var(--ease) forwards;}
+.hero-note{margin-top:16px;color:var(--pale);font-weight:600;font-size:1rem;letter-spacing:.01em;
+  opacity:0;transform:translateY(24px);animation:heroUp .8s .58s var(--ease) forwards;}
+@keyframes heroUp{to{opacity:1;transform:translateY(0);}}
+@media (prefers-reduced-motion:reduce){.hero h1,.hero p,.hero-cta-wrap,.hero-note{animation:none;opacity:1;transform:none;}}
+
+/* small page hero */
+.page-hero{position:relative;height:60vh;min-height:400px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.page-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;}
+.page-hero-scrim{position:absolute;inset:0;background:rgba(17,53,71,.7);}
+.page-hero .hero-inner h1{color:#fff;font-size:clamp(2.4rem,5vw,3.5rem);}
+.page-hero .hero-inner p{color:var(--pale);font-weight:300;font-size:1.2rem;margin-top:14px;}
+
+/* sections */
+.section{padding:96px 0;}
+.section.tint{background:var(--tint);}
+.section.navy{background:var(--navy);color:#fff;}
+.center{text-align:center;}
+.eyebrow-badge{display:inline-flex;align-items:center;gap:8px;background:var(--pale);border:1px solid var(--sky);color:var(--navy);font-weight:600;font-size:.9rem;padding:10px 20px;border-radius:999px;margin-top:16px;}
+h2.section-title{font-size:clamp(1.8rem,3.2vw,2.4rem);margin-bottom:12px;}
+.section-sub{color:rgba(17,53,71,.7);font-size:1.05rem;}
+
+/* pricing cards - home */
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;max-width:760px;margin:44px auto 0;}
+.price-card{background:#fff;border:1px solid rgba(100,194,236,.3);border-radius:14px;padding:32px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(17,53,71,.04);transition:box-shadow .3s ease;}
+.price-card:hover{box-shadow:0 10px 30px rgba(17,53,71,.12);}
+.price-card-head{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.price-icon{width:40px;height:40px;border-radius:50%;background:var(--pale);display:flex;align-items:center;justify-content:center;color:var(--teal);flex-shrink:0;}
+.price-card h3{font-size:1.25rem;font-weight:600;}
+.price-amount{font-family:var(--font-display);font-size:2.4rem;font-weight:700;color:var(--teal);margin-bottom:8px;}
+.price-amount span{font-family:var(--font-body);font-size:1rem;font-weight:400;color:rgba(17,53,71,.5);}
+.price-card p.price-desc{color:rgba(17,53,71,.7);font-size:.9rem;line-height:1.6;flex:1;}
+.price-card.featured{background:var(--navy);color:#fff;border-color:var(--teal);position:relative;overflow:hidden;}
+.price-card.featured .price-amount{color:var(--pale);}
+.price-card.featured .price-amount span{color:rgba(255,255,255,.5);}
+.price-card.featured p.price-desc{color:rgba(255,255,255,.8);}
+.price-card.featured h3{color:#fff;}
+.price-card.featured .price-icon{background:var(--teal);color:#fff;}
+.featured-tag{position:absolute;top:16px;right:16px;background:var(--teal);color:#fff;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;}
+.price-note-sm{color:rgba(255,255,255,.6);font-size:.78rem;margin-bottom:10px;}
+
+/* feature cards */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:16px;}
+.feature-card{background:#fff;border:1px solid rgba(100,194,236,.2);border-radius:14px;padding:32px;box-shadow:0 1px 2px rgba(17,53,71,.04);transition:box-shadow .3s ease,transform .3s ease;}
+.feature-card:hover{box-shadow:0 12px 30px rgba(17,53,71,.1);transform:translateY(-4px);}
+.feature-icon{width:48px;height:48px;border-radius:50%;background:var(--pale);display:flex;align-items:center;justify-content:center;color:var(--teal);margin-bottom:24px;}
+.feature-card h3{font-size:1.4rem;font-weight:600;margin-bottom:12px;}
+.feature-card p{color:rgba(17,53,71,.8);line-height:1.7;}
+
+/* stats banner */
+.stats-band{position:relative;padding:112px 0;background:var(--navy);overflow:hidden;}
+.stats-band-bg{position:absolute;inset:0;background:url('badminton-court.jpg') center/cover no-repeat;opacity:.2;mix-blend-mode:overlay;}
+.stats-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;text-align:center;}
+.stat-num{font-family:var(--font-display);font-weight:700;font-size:clamp(2rem,3.4vw,3rem);color:var(--pale);margin-bottom:8px;}
+.stat-lbl{color:rgba(255,255,255,.8);font-weight:600;letter-spacing:.05em;text-transform:uppercase;font-size:.85rem;}
+
+/* reviews */
+.stars-row{display:flex;align-items:center;justify-content:center;gap:2px;margin-top:8px;}
+.stars-row svg{width:20px;height:20px;color:#fbbf24;}
+.stars-note{margin-left:8px;color:rgba(17,53,71,.6);font-size:.9rem;font-weight:500;}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px;}
+.review-card{background:#fff;border:1px solid rgba(100,194,236,.2);border-radius:14px;padding:28px;box-shadow:0 1px 2px rgba(17,53,71,.04);transition:box-shadow .3s ease;}
+.review-card:hover{box-shadow:0 12px 30px rgba(17,53,71,.1);}
+.review-stars{display:flex;gap:2px;margin-bottom:12px;}
+.review-stars svg{width:16px;height:16px;color:#fbbf24;}
+.review-card p{color:rgba(17,53,71,.8);font-size:.92rem;line-height:1.7;font-style:italic;margin-bottom:16px;}
+.review-attr{color:var(--teal);font-weight:600;font-size:.88rem;}
+
+/* cta band */
+.cta-final{padding:0 0 100px;text-align:center;}
+.cta-final .btn{margin-top:8px;}
+
+/* signup page */
+.signup-wrap{padding:120px 0 80px;background:linear-gradient(180deg, rgba(184,245,255,.5), rgba(184,245,255,.15) 400px, transparent 700px);}
+.signup-head{text-align:center;margin-bottom:40px;}
+.signup-head h1{font-size:2.4rem;margin-bottom:12px;}
+.signup-head p{color:rgba(17,53,71,.7);font-size:1.1rem;margin-bottom:16px;}
+
+.level-panel{margin-bottom:40px;background:#fff;border:1px solid rgba(100,194,236,.3);border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(17,53,71,.05);}
+.level-panel-head{background:var(--navy);padding:14px 22px;}
+.level-panel-head h2{color:#fff;font-size:1.05rem;}
+.level-row{display:flex;gap:18px;padding:16px 22px;align-items:flex-start;border-top:1px solid rgba(100,194,236,.15);}
+.level-row:first-of-type{border-top:none;}
+.level-name{flex-shrink:0;width:100px;font-weight:600;color:var(--teal);font-size:.9rem;}
+.level-desc{color:rgba(17,53,71,.75);font-size:.9rem;line-height:1.6;}
+
+.price-ref-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px;text-align:center;}
+.price-ref-card{background:#fff;border:1px solid rgba(100,194,236,.3);border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(17,53,71,.04);}
+.price-ref-amt{font-family:var(--font-display);font-size:1.6rem;font-weight:700;color:var(--teal);}
+.price-ref-lbl{font-weight:600;font-size:.9rem;margin-top:2px;}
+.price-ref-note{color:rgba(17,53,71,.55);font-size:.78rem;margin-top:2px;}
+
+.classes-title{font-size:1.7rem;margin-bottom:20px;}
+.class-list{display:flex;flex-direction:column;gap:20px;}
+.class-card{display:block;background:#fff;border-radius:16px;border:2px solid rgba(100,194,236,.4);box-shadow:0 1px 2px rgba(17,53,71,.04);overflow:hidden;cursor:pointer;transition:border-color .25s ease,box-shadow .25s ease;}
+.class-card:hover{border-color:var(--teal);box-shadow:0 16px 34px rgba(17,53,71,.14);}
+.class-card-bar{height:6px;background:linear-gradient(90deg,var(--sky),var(--teal));transition:background .3s ease;}
+.class-card:hover .class-card-bar{background:linear-gradient(90deg,var(--teal),var(--navy));}
+.class-card-body{padding:28px;}
+.class-meta-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:24px;}
+.class-meta-item{display:flex;gap:12px;}
+.class-meta-icon{width:40px;height:40px;border-radius:50%;background:var(--pale);display:flex;align-items:center;justify-content:center;color:var(--teal);flex-shrink:0;}
+.class-meta-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--teal);margin-bottom:2px;}
+.class-meta-value{font-weight:500;font-size:.92rem;color:var(--navy);}
+.class-card-footer{display:flex;justify-content:flex-end;padding-top:16px;border-top:1px solid rgba(100,194,236,.2);}
+.register-pill{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:#fff;padding:11px 22px;border-radius:8px;font-weight:600;font-size:.9rem;transition:background .2s ease,transform .2s ease;}
+.class-card:hover .register-pill{background:var(--navy);transform:scale(1.05);}
+
+/* about page */
+.story-section{padding:96px 0;}
+.story-inner{max-width:720px;margin:0 auto;text-align:center;}
+.story-inner h2{color:var(--teal);font-size:1.9rem;margin-bottom:22px;}
+.story-inner p{font-size:1.1rem;color:rgba(17,53,71,.8);line-height:1.8;margin-bottom:20px;}
+.expect-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:40px;}
+.expect-card{background:#fff;border:1px solid rgba(100,194,236,.2);border-radius:14px;padding:26px;box-shadow:0 1px 2px rgba(17,53,71,.04);}
+.expect-card h3{font-size:1.05rem;margin-bottom:8px;}
+.expect-card p{color:rgba(17,53,71,.7);font-size:.88rem;line-height:1.6;}
+.coach-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;max-width:820px;margin:44px auto 0;}
+.coach-card{background:#fff;border:1px solid rgba(100,194,236,.2);border-radius:14px;padding:32px;box-shadow:0 1px 2px rgba(17,53,71,.04);}
+.coach-avatar{width:64px;height:64px;border-radius:50%;background:var(--pale);display:flex;align-items:center;justify-content:center;color:var(--teal);font-family:var(--font-display);font-size:1.6rem;font-weight:700;margin-bottom:16px;}
+.coach-card h3{font-size:1.25rem;margin-bottom:2px;}
+.coach-role{color:var(--teal);font-weight:500;font-size:.88rem;margin-bottom:12px;}
+.coach-card p.bio{color:rgba(17,53,71,.7);font-size:.88rem;line-height:1.65;}
+
+/* faq */
+.faq-wrap{padding:128px 0 96px;}
+.faq-head{text-align:center;margin-bottom:48px;}
+.faq-head h1{font-size:2.6rem;margin-bottom:14px;}
+.faq-head p{color:rgba(17,53,71,.7);font-size:1.1rem;}
+.faq-panel{max-width:760px;margin:0 auto;background:#fff;border-radius:16px;border:1px solid rgba(100,194,236,.2);box-shadow:0 1px 2px rgba(17,53,71,.04);padding:12px 28px;}
+.faq-item{border-top:1px solid rgba(100,194,236,.25);}
+.faq-item:first-child{border-top:none;}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0;text-align:left;font-family:var(--font-display);font-size:1.08rem;font-weight:600;color:var(--navy);}
+.faq-item.open .faq-q{color:var(--teal);}
+.faq-chevron{flex-shrink:0;width:20px;height:20px;transition:transform .3s var(--ease);color:var(--teal);}
+.faq-item.open .faq-chevron{transform:rotate(180deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease);}
+.faq-a-inner{padding-bottom:24px;color:rgba(17,53,71,.8);font-size:.96rem;line-height:1.7;max-width:660px;}
+.faq-contact{text-align:center;margin-top:48px;}
+.faq-contact p{color:rgba(17,53,71,.7);margin-bottom:8px;}
+.faq-contact a{color:var(--teal);font-weight:600;}
+.faq-contact a:hover{color:var(--navy);}
+
+/* footer */
+footer{background:var(--navy);color:rgba(255,255,255,.78);padding:56px 0 0;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;}
+footer h2.footer-brand{color:var(--pale);font-size:1.5rem;margin-bottom:16px;}
+footer p{color:rgba(255,255,255,.7);max-width:340px;}
+footer h3{color:var(--sky);font-weight:600;font-size:1.05rem;margin-bottom:16px;}
+footer .footer-list li{margin-bottom:8px;}
+footer .footer-list a{color:rgba(255,255,255,.7);transition:color .2s ease;}
+footer .footer-list a:hover{color:var(--pale);}
+.footer-contact li{color:rgba(255,255,255,.7);font-size:.92rem;margin-bottom:8px;}
+.footer-contact a{color:var(--sky);text-decoration:underline;text-underline-offset:2px;}
+.footer-contact a:hover{color:var(--pale);}
+.footer-bottom{margin-top:48px;padding:28px 0;border-top:1px solid rgba(255,255,255,.1);text-align:center;color:rgba(255,255,255,.5);font-size:.85rem;}
+
+@media (max-width:980px){
+  .nav-links{position:fixed;top:0;right:0;height:100vh;width:78vw;max-width:300px;background:var(--navy);flex-direction:column;justify-content:center;gap:28px;transform:translateX(100%);transition:transform .4s var(--ease);box-shadow:-10px 0 40px rgba(0,0,0,.3);}
+  body.menu-open .nav-links{transform:translateX(0);}
+  .nav-link{font-size:1.1rem;color:#fff;}
+  .hamburger{display:flex;z-index:1001;}
+  body.menu-open .hamburger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  body.menu-open .hamburger span:nth-child(2){opacity:0;}
+  body.menu-open .hamburger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .nav-register{display:none;}
+  .grid-3,.expect-grid,.coach-grid,.price-ref-grid{grid-template-columns:1fr;}
+  .review-grid{grid-template-columns:1fr;}
+  .stats-grid{grid-template-columns:1fr;gap:36px;}
+  .footer-grid{grid-template-columns:1fr;gap:32px;}
+  .class-meta-grid{grid-template-columns:1fr;}
+}
+@media (max-width:640px){
+  .grid-2{grid-template-columns:1fr;}
+  .section{padding:64px 0;}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <div class="nav-wrap">
+    <a href="#home" class="brand">Glen Shields Badminton</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home" class="nav-link" data-page="home">Home</a>
+      <a href="#about" class="nav-link" data-page="about">About Us</a>
+      <a href="#faq" class="nav-link" data-page="faq">FAQ</a>
+      <a href="#signup" class="btn btn-sm nav-register">Register</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section class="page active" id="home">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-scrim"></div>
+    <div class="hero-inner">
+      <h1>Glen Shields<br><em>Badminton</em></h1>
+      <p>Community coaching for all levels across the Vaughan area. Drop in or commit to a full term — every court, every session, all welcome.</p>
+      <div class="hero-cta-wrap"><a href="#signup" class="btn btn-primary">Join Us Today!</a></div>
+      <p class="hero-note">🎉 First session is FREE for every new member</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="center">
+        <h2 class="section-title reveal">Simple, Transparent Pricing</h2>
+        <p class="section-sub reveal">No hidden fees. Choose the option that works for your schedule.</p>
+        <div class="reveal"><span class="eyebrow-badge">Every new member gets one FREE trial session, no strings attached</span></div>
+      </div>
+      <div class="grid-2">
+        <div class="price-card reveal">
+          <div class="price-card-head">
+            <div class="price-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+            <h3>Drop-In Session</h3>
+          </div>
+          <div class="price-amount">$25<span> / session</span></div>
+          <p class="price-desc">No commitment. Join any available session and pay per class. Perfect for flexible schedules or first-timers.</p>
+          <a href="#signup" class="btn btn-outline-teal btn-block" style="margin-top:24px;">Join Us Today!</a>
+        </div>
+        <div class="price-card featured reveal d1">
+          <span class="featured-tag">Best Value</span>
+          <div class="price-card-head">
+            <div class="price-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+            <h3>Term Enrollment</h3>
+          </div>
+          <div class="price-amount">$180<span> / term</span></div>
+          <p class="price-note-sm">9 coached sessions</p>
+          <p class="price-desc">Commit to the full term and get all 9 coaching sessions for one fixed price. The fastest way to progress.</p>
+          <a href="#signup" class="btn btn-primary btn-block" style="margin-top:24px;">Join Us Today!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section tint">
+    <div class="container">
+      <div class="grid-3">
+        <div class="feature-card reveal">
+          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M14.5 14.6c2.6.3 4.5 2.5 4.5 5.4"/></svg></div>
+          <h3>Welcoming Community</h3>
+          <p>Passionate players of all levels, from first-timers to competitive veterans. You will find your place on the court.</p>
+        </div>
+        <div class="feature-card reveal d1">
+          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+          <h3>Expert Coaching</h3>
+          <p>Certified coaches focused on technique, footwork, and game sense. Group sessions structured for real improvement.</p>
+        </div>
+        <div class="feature-card reveal d2">
+          <div class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg></div>
+          <h3>Local School Courts</h3>
+          <p>Sessions held at a school gymnasium close to home. Convenient, accessible, and no long drives required.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-band">
+    <div class="stats-band-bg"></div>
+    <div class="container">
+      <div class="stats-grid">
+        <div class="reveal"><div class="stat-num" data-count="25" data-prefix="$">$0</div><div class="stat-lbl">Drop-In Rate</div></div>
+        <div class="reveal d1"><div class="stat-num" data-count="9">0</div><div class="stat-lbl">Sessions per Term</div></div>
+        <div class="reveal d2"><div class="stat-num" data-count="180" data-prefix="$">$0</div><div class="stat-lbl">Term Price</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="center reveal">
+        <h2 class="section-title">What Members Say</h2>
+        <div class="stars-row">
+          <svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 20 20"><defs><linearGradient id="half"><stop offset="50%" stop-color="currentColor"/><stop offset="50%" stop-color="transparent"/></linearGradient></defs><path fill="url(#half)" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <span class="stars-note">4.5 on Google</span>
+        </div>
+      </div>
+      <div class="review-grid">
+        <div class="review-card reveal">
+          <div class="review-stars">★★★★★</div>
+          <p>"This badminton club helped me improve my badminton skills, now I can beat my friends in badminton. Now I play goodminton."</p>
+          <div class="review-attr">— Brayden Feng</div>
+        </div>
+        <div class="review-card reveal d1">
+          <div class="review-stars">★★★★★</div>
+          <p>"Awesome coaches and my kids have had so much fun and improvement playing with others in our community :)"</p>
+          <div class="review-attr">— Meiling C</div>
+        </div>
+        <div class="review-card reveal d2">
+          <div class="review-stars">★★★★★</div>
+          <p>"An incredible experience! I improved so much after 1 month and it's my favourite way to destress. The location is also very convenient."</p>
+          <div class="review-attr">— Stephen Wang</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGN UP -->
+<section class="page" id="signup">
+  <div class="signup-wrap">
+    <div class="container" style="max-width:900px;">
+      <div class="signup-head reveal">
+        <h1>Join Us Today!</h1>
+        <p>Join Glen Shields Badminton and start developing your game with our experienced coaches.</p>
+        <span class="eyebrow-badge">New member? Your first session is completely FREE</span>
+      </div>
+
+      <div class="level-panel reveal">
+        <div class="level-panel-head"><h2>Not sure which level you are?</h2></div>
+        <div class="level-row">
+          <span class="level-name">Beginner</span>
+          <span class="level-desc">Never played badminton, or only played recreationally.</span>
+        </div>
+        <div class="level-row">
+          <span class="level-name">Intermediate</span>
+          <span class="level-desc">Played in school tournaments or taken badminton classes before.</span>
+        </div>
+        <div class="level-row">
+          <span class="level-name">Advanced</span>
+          <span class="level-desc">Played in C-level tournaments or above through Ontario Badminton. If you're unsure whether your tournament qualifies, you're likely not at this level — C-level events are very explicitly labelled as such.</span>
+        </div>
+      </div>
+
+      <div class="price-ref-grid reveal">
+        <div class="price-ref-card"><div class="price-ref-amt">FREE</div><div class="price-ref-lbl">Free Trial</div><div class="price-ref-note">First session, new members only</div></div>
+        <div class="price-ref-card"><div class="price-ref-amt">$25</div><div class="price-ref-lbl">Drop-In</div><div class="price-ref-note">Per session, no commitment</div></div>
+        <div class="price-ref-card"><div class="price-ref-amt">$180</div><div class="price-ref-lbl">Term Enrollment</div><div class="price-ref-note">9 sessions, best value</div></div>
+      </div>
+
+      <h2 class="classes-title reveal">Available Classes</h2>
+      <div class="class-list">
+
+        <a class="class-card reveal" href="https://docs.google.com/forms/d/e/1FAIpQLScg3slX58e1-eLvPfIIutQi72CKu1XyQnqsGbQRHQgkZVG_rQ/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">
+          <div class="class-card-bar"></div>
+          <div class="class-card-body">
+            <div class="class-meta-grid">
+              <div class="class-meta-item">
+                <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg></div>
+                <div><div class="class-meta-label">Location</div><div class="class-meta-value">525 New Westminster Dr, Thornhill, ON L4J 7X3</div></div>
+              </div>
+              <div class="class-meta-item">
+                <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg></div>
+                <div><div class="class-meta-label">Class Time</div><div class="class-meta-value">Wednesdays, 6:00 – 8:00 PM</div></div>
+              </div>
+              <div class="class-meta-item">
+                <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+                <div><div class="class-meta-label">Skill Level</div><div class="class-meta-value">Beginner – Intermediate</div></div>
+              </div>
+              <div class="class-meta-item">
+                <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>
+                <div><div class="class-meta-label">Age Group</div><div class="class-meta-value">Ages 6 – 16</div></div>
+              </div>
+            </div>
+            <div class="class-card-footer">
+              <span class="register-pill">Register Now <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+        <a class="class-card reveal d1" href="https://docs.google.com/forms/d/e/1FAIpQLScOL2CS15SLxiahfSs6LG8EtMnNUNrjl-bM8-q2-SsE4IVmVA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">
+          <div class="class-card-bar"></div>
+          <div class="class-card-body">
+            <div class="class-meta-grid">
+              <div class="class-meta-item">
+                <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg></div>
+                <div><div class="class-meta-label">Location</div><div class="class-meta-value">206 Glen Shields Ave, Concord, ON L4K 2E5</div></div>
+              </div>
+              <div class="class-meta-item">
+                <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg></div>
+                <div><div class="class-meta-label">Class Time</div><div class="class-meta-value">Tuesdays, 8:15 – 10:15 PM</div></div>
+              </div>
+              <div class="class-meta-item">
+                <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+                <div><div class="class-meta-label">Skill Level</div><div class="class-meta-value">Beginner – Intermediate</div></div>
+              </div>
+              <div class="class-meta-item">
+                <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>
+                <div><div class="class-meta-label">Age Group</div><div class="class-meta-value">Ages 12+</div></div>
+              </div>
+            </div>
+            <div class="class-card-footer">
+              <span class="register-pill">Register Now <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="page" id="about">
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('badminton-about.jpg');"></div>
+    <div class="page-hero-scrim"></div>
+    <div class="hero-inner">
+      <h1>About Us</h1>
+      <p>A youth-led community program bringing affordable, coach-led badminton to Vaughan.</p>
+    </div>
+  </div>
+
+  <div class="story-section">
+    <div class="container">
+      <div class="story-inner">
+        <h2 class="reveal">How Glen Shields Started</h2>
+        <p class="reveal">For years, accessing badminton in Vaughan felt out of reach. The closest coach-led programs were over ten kilometres away and cost more than forty dollars per session. For many families in the community, this created a real barrier, young people who wanted to play simply could not afford the time or cost to participate.</p>
+        <p class="reveal d1">Glen Shields Badminton was founded by youth, for youth. We came together with a shared goal: make badminton affordable, local, and welcoming. Today we are one of the few coach-led badminton programs in Vaughan, operating in the east side of the city where youth programs, especially badminton, are scarce.</p>
+        <p class="reveal d2">We run organized sessions out of rented school gymnasium courts, keeping costs low so that more families can participate. Every week, participants build fitness, make friends, and find a community they can count on.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section tint" style="padding:64px 0;">
+    <div class="container" style="max-width:900px;">
+      <h2 class="section-title center reveal" style="margin-bottom:36px;">What to Expect</h2>
+      <div class="expect-grid">
+        <div class="expect-card reveal">
+          <h3>Structured Coaching</h3>
+          <p>Each session includes warm-ups, technique drills, and open play, led by experienced coaches who give clear, constructive feedback.</p>
+        </div>
+        <div class="expect-card reveal d1">
+          <h3>All Skill Levels Welcome</h3>
+          <p>From complete beginners to more experienced players, our coaches adjust instruction to meet each participant where they are.</p>
+        </div>
+        <div class="expect-card reveal d2">
+          <h3>Consistent Location Each Year</h3>
+          <p>Each year is held at a single school gymnasium. Your location is confirmed at registration and stays the same for all sessions that year.</p>
+        </div>
+        <div class="expect-card reveal d3">
+          <h3>Affordable, Flexible Pricing</h3>
+          <p>Drop in for $25 per session, or commit to a term of 9 classes for $180. No long contracts, no hidden fees.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <h2 class="section-title center reveal" style="margin-bottom:8px;">Our Coaches</h2>
+      <div class="coach-grid">
+        <div class="coach-card reveal">
+          <div class="coach-avatar">O</div>
+          <h3>Oleksandr Zubarev</h3>
+          <div class="coach-role">Coach</div>
+          <p class="bio">A coach at Glen Shields since the program began. Oleksandr is a former top-20 nationally ranked player in his age group in Canada, with over 8 years of playing experience and 2 years of coaching. He has a strong ability to identify technical mistakes quickly and give constructive feedback, while keeping sessions positive and engaging.</p>
+        </div>
+        <div class="coach-card reveal d1">
+          <div class="coach-avatar">R</div>
+          <h3>Raymond Tan</h3>
+          <div class="coach-role">Coach</div>
+          <p class="bio">One of the founding members of Glen Shields Badminton. Raymond is a certified skiing instructor with a tutoring background and volunteer experience in badminton. He brings clear communication skills, structured lesson planning, and a patient, encouraging coaching style that helps players of all levels build confidence.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="page" id="faq">
+  <div class="faq-wrap">
+    <div class="container" style="max-width:820px;">
+      <div class="faq-head reveal">
+        <h1>Frequently Asked Questions</h1>
+        <p>Everything you need to know about Glen Shields Badminton.</p>
+      </div>
+
+      <div class="faq-panel reveal">
+        <div class="faq-item">
+          <button class="faq-q"><span>Is there a free trial?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">Yes! Every new member is entitled to one free trial session. No payment required, just sign up and come out. It is a great way to experience the coaching and meet the group before committing to a plan.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>How much does it cost to join?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">We offer two options after your free trial. A drop-in session is $25 per class, no commitment needed, just show up. A term enrollment is $180 for 9 coached sessions, which works out to $20 per class.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>Where do sessions take place?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">Glen Shields Badminton rents gymnasium courts at local schools. Each year runs at a single school location for the entire year. The specific location for your class will be confirmed at registration.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>Is this program suitable for beginners?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">Yes, absolutely. Glen Shields Badminton welcomes players of all skill levels, from complete beginners to more experienced players. Our coaches adapt their instruction to meet each player where they are.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>Do I need to bring my own racket?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">If you have your own racket, please bring it. For those who do not have one, the coaches have a few spare rackets available, though the amount is limited. We strongly encourage everyone to bring their own racket if possible.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>What footwear should I wear?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">Any footwear is allowed, although indoor court shoes are strongly recommended. Running shoes are permitted but are not ideal for court play. Footwear such as crocs and boots is highly not recommended due to safety concerns, and players may be asked to sit off if their footwear is considered dangerous.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>Who runs the coaching sessions?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">Sessions are led by Oleksandr Zubarev and Raymond Tan. Oleksandr is a former top-20 nationally ranked player in his age group in Canada with over 8 years of playing experience and 2 years of coaching. Raymond is a certified instructor with a background in tutoring and badminton volunteering.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>Is this program only for youth?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">Our program is primarily focused on youth and young people, but we welcome anyone who wants to participate. Our goal is to make badminton accessible and affordable for the community.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>How do I sign up?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">Fill out the registration form on our Sign Up page. Select your plan (drop-in or term), enter your details, and submit. We will follow up by email with payment information and session details.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q"><span>How do I pay?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="faq-a"><div class="faq-a-inner">You can pay in person or digitally. Payment methods will be discussed after your trial class.</div></div>
+        </div>
+      </div>
+
+      <div class="faq-contact reveal">
+        <p>Still have questions?</p>
+        <a href="mailto:glen.shields.badm1nton@gmail.com">glen.shields.badm1nton@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h2 class="footer-brand">Glen Shields Badminton</h2>
+        <p>A youth-led, not-for-profit badminton program making quality coaching affordable and accessible in Vaughan, Ontario.</p>
+      </div>
+      <div>
+        <h3>Quick Links</h3>
+        <ul class="footer-list">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#signup">Join Us Today!</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul class="footer-contact">
+          <li style="color:rgba(255,255,255,.7);">Vaughan, Ontario</li>
+          <li>(647) 918-0907</li>
+          <li><a href="mailto:glen.shields.badm1nton@gmail.com">glen.shields.badm1nton@gmail.com</a></li>
+          <li><a href="https://www.google.com/maps/place/Glen+Shields+Badminton/@43.8033247,-79.4560872,19.25z/data=!4m7!3m6!1s0x882b2db79594b797:0x49693324431ed457!4b1!8m2!3d43.8032377!4d-79.4559733!16s%2Fg%2F11ypc80w5n?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">View on Google Maps</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; <span id="year"></span> Glen Shields Badminton Inc. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var PAGES = ['home','signup','about','faq'];
+  function getPageFromHash(){
+    var h = location.hash.replace('#','');
+    return PAGES.indexOf(h) !== -1 ? h : 'home';
+  }
+  function showPage(id){
+    document.querySelectorAll('.page').forEach(function(p){ p.classList.toggle('active', p.id === id); });
+    document.querySelectorAll('.nav-link').forEach(function(a){ a.classList.toggle('active', a.dataset.page === id); });
+    window.scrollTo(0,0);
+    document.body.classList.remove('menu-open');
+    hamburger.setAttribute('aria-expanded','false');
+    updateHeader();
+    requestAnimationFrame(function(){ requestAnimationFrame(checkReveals); });
+  }
+  window.addEventListener('hashchange', function(){ showPage(getPageFromHash()); });
+
+  var hamburger = document.getElementById('hamburger');
+  hamburger.addEventListener('click', function(){
+    var open = document.body.classList.toggle('menu-open');
+    hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.querySelectorAll('.nav-link, .nav-register').forEach(function(a){
+    a.addEventListener('click', function(){ document.body.classList.remove('menu-open'); });
+  });
+
+  var header = document.getElementById('siteHeader');
+  function updateHeader(){
+    var page = getPageFromHash();
+    var solid = (page !== 'home') || window.scrollY > 20;
+    header.classList.toggle('solid', solid);
+  }
+  window.addEventListener('scroll', updateHeader, {passive:true});
+
+  var countedEls = new WeakSet();
+  function checkReveals(){
+    var vh = window.innerHeight;
+    document.querySelectorAll('.page.active .reveal:not(.in-view)').forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if (r.top < vh * 0.9 && r.bottom > 0) {
+        el.classList.add('in-view');
+        var num = el.querySelector ? el.querySelector('.stat-num') : null;
+        if (num && !countedEls.has(num)) { countedEls.add(num); animateCount(num); }
+      }
+    });
+  }
+  window.addEventListener('scroll', checkReveals, {passive:true});
+  window.addEventListener('resize', checkReveals);
+
+  function animateCount(el){
+    var target = parseFloat(el.dataset.count);
+    var prefix = el.dataset.prefix || '';
+    var dur = 1000, start = null;
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      el.textContent = prefix + Math.floor(p * target);
+      if (p < 1) requestAnimationFrame(step); else el.textContent = prefix + target;
+    }
+    requestAnimationFrame(step);
+  }
+
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var q = item.querySelector('.faq-q');
+    var a = item.querySelector('.faq-a');
+    q.addEventListener('click', function(){
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(i){
+        if (i !== item) { i.classList.remove('open'); i.querySelector('.faq-a').style.maxHeight = null; }
+      });
+      item.classList.toggle('open', !isOpen);
+      a.style.maxHeight = !isOpen ? a.scrollHeight + 'px' : null;
+    });
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  document.addEventListener('DOMContentLoaded', function(){
+    showPage(getPageFromHash());
+    updateHeader();
+    checkReveals();
+  });
+})();
+</script>
+
+</body>
+</html>
