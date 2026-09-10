@@ -68,10 +68,17 @@ html.js .reveal.in-view{opacity:1;transform:none;}
 .nav-link.active{color:#fff;}
 .site-header.solid .nav-link.active{color:var(--pale);}
 .nav-link.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:currentColor;border-radius:2px;}
-.nav-register{background:#fff;color:var(--navy);}
-.nav-register:hover{background:var(--pale);}
-.site-header.solid .nav-register{background:var(--teal);color:#fff;}
-.site-header.solid .nav-register:hover{background:var(--sky);color:var(--navy);}
+.nav-dropdown{position:relative;}
+.nav-dropdown-trigger{display:flex;align-items:center;gap:6px;cursor:pointer;}
+.nav-dropdown-trigger svg{transition:transform .3s var(--ease);}
+.nav-dropdown.open .nav-dropdown-trigger svg{transform:rotate(180deg);}
+.nav-dropdown-menu{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(6px);background:#fff;border-radius:10px;border:1px solid rgba(100,194,236,.35);box-shadow:0 16px 36px rgba(17,53,71,.2);min-width:180px;padding:8px;opacity:0;visibility:hidden;transition:opacity .25s ease,transform .25s ease,visibility .25s;z-index:1200;}
+.nav-dropdown:hover .nav-dropdown-menu,.nav-dropdown.open .nav-dropdown-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+.nav-dropdown-menu a{display:block;padding:11px 16px;border-radius:6px;color:var(--navy);font-size:.9rem;font-weight:600;transition:background .2s ease,color .2s ease;}
+.nav-dropdown-menu a:hover{background:var(--tint);color:var(--teal);}
+.nav-dropdown-menu a.active{color:var(--teal);background:var(--tint);}
+.nav-dropdown-trigger.active{color:#fff;}
+.site-header.solid .nav-dropdown-trigger.active{color:var(--pale);}
 .hamburger{display:none;flex-direction:column;gap:5px;width:26px;padding:4px;}
 .hamburger span{display:block;height:2px;width:100%;background:#fff;border-radius:2px;transition:transform .3s ease,opacity .3s ease;}
 
@@ -281,7 +288,11 @@ footer .footer-list a:hover{color:var(--pale);}
   body.menu-open .hamburger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
   body.menu-open .hamburger span:nth-child(2){opacity:0;}
   body.menu-open .hamburger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-  .nav-register{display:none;}
+  .nav-dropdown-menu{position:static;transform:none;opacity:1;visibility:visible;background:transparent;border:none;box-shadow:none;padding:0;max-height:0;overflow:hidden;min-width:0;transition:max-height .35s ease;}
+  .nav-dropdown:hover .nav-dropdown-menu{max-height:0;}
+  .nav-dropdown.open .nav-dropdown-menu{max-height:160px;padding-top:6px;}
+  .nav-dropdown-menu a{color:rgba(255,255,255,.75);font-size:1rem;padding:8px 0 8px 16px;}
+  .nav-dropdown-menu a:hover{background:none;color:#fff;}
   .grid-3,.expect-grid,.coach-grid,.price-ref-grid,.grid-3-price{grid-template-columns:1fr;}
   .review-grid{grid-template-columns:1fr;}
   .stats-grid{grid-template-columns:1fr;gap:36px;}
@@ -301,9 +312,15 @@ footer .footer-list a:hover{color:var(--pale);}
     <a href="#home" class="brand">Glen Shields Badminton</a>
     <nav class="nav-links" id="navLinks">
       <a href="#home" class="nav-link" data-page="home">Home</a>
+      <div class="nav-dropdown" id="programsDropdown">
+        <span class="nav-link nav-dropdown-trigger" id="programsTrigger">Programs <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></span>
+        <div class="nav-dropdown-menu">
+          <a href="#recreational" data-page="recreational">Recreational</a>
+          <a href="#classes" data-page="classes">Sessions</a>
+        </div>
+      </div>
       <a href="#about" class="nav-link" data-page="about">About Us</a>
       <a href="#faq" class="nav-link" data-page="faq">FAQ</a>
-      <a href="#signup" class="btn btn-sm nav-register">Register</a>
     </nav>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
@@ -319,8 +336,8 @@ footer .footer-list a:hover{color:var(--pale);}
     <div class="hero-inner">
       <h1>Glen Shields<br><em>Badminton</em></h1>
       <p>Community coaching for all levels across the Vaughan area. Drop in or commit to a full term — every court, every session, all welcome.</p>
-      <div class="hero-cta-wrap"><a href="#signup" class="btn btn-primary">Join Us Today!</a></div>
-      <p class="hero-note">🎉 First session is FREE for every new member</p>
+      <div class="hero-cta-wrap"><a href="#classes" class="btn btn-primary">Join Us Today!</a></div>
+      <p class="hero-note">🎉 First class is FREE for every new member</p>
     </div>
   </div>
 
@@ -329,7 +346,7 @@ footer .footer-list a:hover{color:var(--pale);}
       <div class="center">
         <h2 class="section-title reveal">Simple, Transparent Pricing</h2>
         <p class="section-sub reveal">No hidden fees. Choose the option that works for your schedule.</p>
-        <div class="reveal"><span class="eyebrow-badge">Every new member gets one FREE trial session, no strings attached</span></div>
+        <div class="reveal"><span class="eyebrow-badge">Every new member gets one FREE trial class, no strings attached</span></div>
       </div>
       <div class="grid-3-price">
         <div class="price-card reveal">
@@ -339,7 +356,7 @@ footer .footer-list a:hover{color:var(--pale);}
           </div>
           <div class="price-amount">$25<span> / session</span></div>
           <p class="price-desc">No commitment. Join any available session and pay per class. Perfect for flexible schedules or first-timers.</p>
-          <a href="#signup" class="btn btn-outline-teal btn-block" style="margin-top:24px;">Join Us Today!</a>
+          <a href="#classes" class="btn btn-outline-teal btn-block" style="margin-top:24px;">Join Us Today!</a>
         </div>
         <div class="price-card featured reveal d1">
           <span class="featured-tag">Best Value</span>
@@ -350,7 +367,7 @@ footer .footer-list a:hover{color:var(--pale);}
           <div class="price-amount">$180<span> / term</span></div>
           <p class="price-note-sm">9 coached sessions</p>
           <p class="price-desc">Commit to the full term and get all 9 coaching sessions for one fixed price. The fastest way to progress.</p>
-          <a href="#signup" class="btn btn-primary btn-block" style="margin-top:24px;">Join Us Today!</a>
+          <a href="#classes" class="btn btn-primary btn-block" style="margin-top:24px;">Join Us Today!</a>
         </div>
         <div class="price-card reveal d2">
           <div class="price-card-head">
@@ -360,7 +377,7 @@ footer .footer-list a:hover{color:var(--pale);}
           <div class="price-amount">$10<span> / session</span></div>
           <p class="price-note-sm">$5 for students</p>
           <p class="price-desc">Casual, unsupervised drop-in play for friends and family. Bring your own racket and birdies, and enjoy the court on your own time.</p>
-          <a href="#signup" class="btn btn-outline-teal btn-block" style="margin-top:24px;">Join Us Today!</a>
+          <a href="#recreational" class="btn btn-outline-teal btn-block" style="margin-top:24px;">Join Us Today!</a>
         </div>
       </div>
     </div>
@@ -434,171 +451,161 @@ footer .footer-list a:hover{color:var(--pale);}
 </section>
 
 <!-- SIGN UP -->
-<section class="page" id="signup">
+<section class="page" id="classes">
   <div class="signup-wrap">
     <div class="container" style="max-width:900px;">
       <div class="signup-head reveal">
-        <h1>Join Us Today!</h1>
-        <p>Sign up for coach-led classes, or drop in for casual recreational play — two ways to get on court with Glen Shields Badminton.</p>
+        <h1>Coached Sessions</h1>
+        <p>Small-group coaching led by our coaches. Pick your plan, then register for a class night below.</p>
+        <span class="eyebrow-badge">New member? Your first class is completely FREE</span>
       </div>
 
-      <!-- ==================== CLASS REGISTRATION ==================== -->
-      <div class="signup-block reveal">
-        <div class="signup-block-head">
-          <span class="eyebrow-tag">Coached Sessions</span>
-          <h2>Class Registration</h2>
-          <p>Small-group coaching led by our coaches. Pick your plan, then register for a class night below.</p>
-          <span class="eyebrow-badge">New member? Your first session is completely FREE</span>
+      <div class="level-panel reveal">
+        <div class="level-panel-head"><h2>Not sure which level you are?</h2></div>
+        <div class="level-row">
+          <span class="level-name">Beginner</span>
+          <span class="level-desc">Never played badminton, or only played recreationally.</span>
         </div>
-
-        <div class="level-panel reveal">
-          <div class="level-panel-head"><h2>Not sure which level you are?</h2></div>
-          <div class="level-row">
-            <span class="level-name">Beginner</span>
-            <span class="level-desc">Never played badminton, or only played recreationally.</span>
-          </div>
-          <div class="level-row">
-            <span class="level-name">Intermediate</span>
-            <span class="level-desc">Played in school tournaments or taken badminton classes before.</span>
-          </div>
-          <div class="level-row">
-            <span class="level-name">Advanced</span>
-            <span class="level-desc">Played in C-level tournaments or above through Ontario Badminton. If you're unsure whether your tournament qualifies, you're likely not at this level — C-level events are very explicitly labelled as such.</span>
-          </div>
+        <div class="level-row">
+          <span class="level-name">Intermediate</span>
+          <span class="level-desc">Played in school tournaments or taken badminton classes before.</span>
         </div>
-
-        <div class="price-ref-grid reveal">
-          <div class="price-ref-card"><div class="price-ref-amt">FREE</div><div class="price-ref-lbl">Free Trial</div><div class="price-ref-note">First session, new members only</div></div>
-          <div class="price-ref-card"><div class="price-ref-amt">$25</div><div class="price-ref-lbl">Drop-In</div><div class="price-ref-note">Per session, no commitment</div></div>
-          <div class="price-ref-card"><div class="price-ref-amt">$180</div><div class="price-ref-lbl">Term Enrollment</div><div class="price-ref-note">9 sessions, best value</div></div>
-        </div>
-
-        <h3 class="classes-title reveal">Available Classes</h3>
-        <div class="class-list">
-
-          <a class="class-card reveal" href="https://docs.google.com/forms/d/e/1FAIpQLScg3slX58e1-eLvPfIIutQi72CKu1XyQnqsGbQRHQgkZVG_rQ/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">
-            <div class="class-card-bar"></div>
-            <div class="class-card-body">
-              <div class="class-meta-grid">
-                <div class="class-meta-item">
-                  <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg></div>
-                  <div><div class="class-meta-label">Location</div><div class="class-meta-value">525 New Westminster Dr, Thornhill, ON L4J 7X3</div></div>
-                </div>
-                <div class="class-meta-item">
-                  <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg></div>
-                  <div><div class="class-meta-label">Class Time</div><div class="class-meta-value">Wednesdays, 6:00 – 8:00 PM</div></div>
-                </div>
-                <div class="class-meta-item">
-                  <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
-                  <div><div class="class-meta-label">Skill Level</div><div class="class-meta-value">Beginner – Intermediate</div></div>
-                </div>
-                <div class="class-meta-item">
-                  <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>
-                  <div><div class="class-meta-label">Age Group</div><div class="class-meta-value">Ages 6 – 16</div></div>
-                </div>
-              </div>
-              <div class="class-card-footer">
-                <span class="register-pill">Register Now <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></span>
-              </div>
-            </div>
-          </a>
-
-          <a class="class-card reveal d1" href="https://docs.google.com/forms/d/e/1FAIpQLScOL2CS15SLxiahfSs6LG8EtMnNUNrjl-bM8-q2-SsE4IVmVA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">
-            <div class="class-card-bar"></div>
-            <div class="class-card-body">
-              <div class="class-meta-grid">
-                <div class="class-meta-item">
-                  <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg></div>
-                  <div><div class="class-meta-label">Location</div><div class="class-meta-value">206 Glen Shields Ave, Concord, ON L4K 2E5</div></div>
-                </div>
-                <div class="class-meta-item">
-                  <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg></div>
-                  <div><div class="class-meta-label">Class Time</div><div class="class-meta-value">Tuesdays, 8:15 – 10:15 PM</div></div>
-                </div>
-                <div class="class-meta-item">
-                  <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
-                  <div><div class="class-meta-label">Skill Level</div><div class="class-meta-value">Beginner – Intermediate</div></div>
-                </div>
-                <div class="class-meta-item">
-                  <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>
-                  <div><div class="class-meta-label">Age Group</div><div class="class-meta-value">Ages 12+</div></div>
-                </div>
-              </div>
-              <div class="class-card-footer">
-                <span class="register-pill">Register Now <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></span>
-              </div>
-            </div>
-          </a>
-
+        <div class="level-row">
+          <span class="level-name">Advanced</span>
+          <span class="level-desc">Played in C-level tournaments or above through Ontario Badminton. If you're unsure whether your tournament qualifies, you're likely not at this level — C-level events are very explicitly labelled as such.</span>
         </div>
       </div>
 
-      <div class="section-break"></div>
+      <div class="price-ref-grid reveal">
+        <div class="price-ref-card"><div class="price-ref-amt">FREE</div><div class="price-ref-lbl">Free Class</div><div class="price-ref-note">First class, new members only</div></div>
+        <div class="price-ref-card"><div class="price-ref-amt">$25</div><div class="price-ref-lbl">Drop-In</div><div class="price-ref-note">Per session, no commitment</div></div>
+        <div class="price-ref-card"><div class="price-ref-amt">$180</div><div class="price-ref-lbl">Term Enrollment</div><div class="price-ref-note">9 sessions, best value</div></div>
+      </div>
 
-      <!-- ==================== RECREATIONAL PLAY ==================== -->
-      <div class="signup-block reveal">
-        <div class="signup-block-head">
-          <span class="eyebrow-tag">Open Court · Unsupervised</span>
-          <h2>Recreational Play</h2>
-          <p>Casual, drop-in play for friends and family — no instruction, just court time.</p>
-        </div>
+      <h3 class="classes-title reveal">Available Classes</h3>
+      <div class="class-list">
 
-        <div class="price-ref-grid cols-2 reveal">
-          <div class="price-ref-card"><div class="price-ref-amt">$10</div><div class="price-ref-lbl">General</div><div class="price-ref-note">Per session</div></div>
-          <div class="price-ref-card"><div class="price-ref-amt">$5</div><div class="price-ref-lbl">Student Rate</div><div class="price-ref-note">Currently enrolled in a class</div></div>
-        </div>
-
-        <div class="info-panel reveal">
-          <div class="info-panel-head">Important Details</div>
-          <div class="detail-list">
-            <div class="detail-item">
-              <div class="detail-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>
-              <div class="detail-text"><strong>Capacity:</strong> We recommend a maximum of 10 players, since only two courts are allocated for this session. Check the <a href="https://forms.gle/C7fYgT9hfo14zckV6" target="_blank" rel="noopener noreferrer">registration form</a> to see how many people are currently signed up.</div>
+        <a class="class-card reveal" href="https://docs.google.com/forms/d/e/1FAIpQLScg3slX58e1-eLvPfIIutQi72CKu1XyQnqsGbQRHQgkZVG_rQ/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">
+          <div class="class-card-bar"></div>
+          <div class="class-card-body">
+            <div class="class-meta-grid">
+              <div class="class-meta-item">
+                <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg></div>
+                <div><div class="class-meta-label">Location</div><div class="class-meta-value">525 New Westminster Dr, Thornhill, ON L4J 7X3</div></div>
+              </div>
+              <div class="class-meta-item">
+                <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg></div>
+                <div><div class="class-meta-label">Class Time</div><div class="class-meta-value">Wednesdays, 6:00 – 8:00 PM</div></div>
+              </div>
+              <div class="class-meta-item">
+                <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+                <div><div class="class-meta-label">Skill Level</div><div class="class-meta-value">Beginner – Intermediate</div></div>
+              </div>
+              <div class="class-meta-item">
+                <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>
+                <div><div class="class-meta-label">Age Group</div><div class="class-meta-value">Ages 6 – 16</div></div>
+              </div>
             </div>
-            <div class="detail-item">
-              <div class="detail-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
-              <div class="detail-text"><strong>Equipment:</strong> Please bring your own rackets and birdies (equipment is not provided).</div>
-            </div>
-            <div class="detail-item">
-              <div class="detail-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg></div>
-              <div class="detail-text"><strong>Supervision &amp; Practice:</strong> Coaches will be present on-site practicing on their own courts and are not providing instruction or supervision. Participants and parents are fully responsible for themselves and their children.</div>
+            <div class="class-card-footer">
+              <span class="register-pill">Register Now <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></span>
             </div>
           </div>
-        </div>
+        </a>
 
-        <h3 class="classes-title reveal" style="font-size:1.35rem;">Available Session</h3>
-        <div class="class-list">
-
-          <a class="class-card reveal" href="https://forms.gle/C7fYgT9hfo14zckV6" target="_blank" rel="noopener noreferrer">
-            <div class="class-card-bar"></div>
-            <div class="class-card-body">
-              <div class="class-meta-grid">
-                <div class="class-meta-item">
-                  <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg></div>
-                  <div><div class="class-meta-label">Location</div><div class="class-meta-value">121 Joseph Aaron Blvd, Thornhill, ON L4J 6J5</div></div>
-                </div>
-                <div class="class-meta-item">
-                  <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg></div>
-                  <div><div class="class-meta-label">Class Time</div><div class="class-meta-value">Mondays, 6:00 – 8:00 PM</div></div>
-                </div>
-                <div class="class-meta-item">
-                  <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
-                  <div><div class="class-meta-label">Skill Level</div><div class="class-meta-value">Any</div></div>
-                </div>
-                <div class="class-meta-item">
-                  <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>
-                  <div><div class="class-meta-label">Age Group</div><div class="class-meta-value">All Ages</div></div>
-                </div>
+        <a class="class-card reveal d1" href="https://docs.google.com/forms/d/e/1FAIpQLScOL2CS15SLxiahfSs6LG8EtMnNUNrjl-bM8-q2-SsE4IVmVA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">
+          <div class="class-card-bar"></div>
+          <div class="class-card-body">
+            <div class="class-meta-grid">
+              <div class="class-meta-item">
+                <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg></div>
+                <div><div class="class-meta-label">Location</div><div class="class-meta-value">206 Glen Shields Ave, Concord, ON L4K 2E5</div></div>
               </div>
-              <div class="class-card-footer">
-                <span class="register-pill">Register Now <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></span>
+              <div class="class-meta-item">
+                <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg></div>
+                <div><div class="class-meta-label">Class Time</div><div class="class-meta-value">Tuesdays, 8:15 – 10:15 PM</div></div>
+              </div>
+              <div class="class-meta-item">
+                <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+                <div><div class="class-meta-label">Skill Level</div><div class="class-meta-value">Beginner – Intermediate</div></div>
+              </div>
+              <div class="class-meta-item">
+                <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>
+                <div><div class="class-meta-label">Age Group</div><div class="class-meta-value">Ages 12+</div></div>
               </div>
             </div>
-          </a>
+            <div class="class-card-footer">
+              <span class="register-pill">Register Now <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></span>
+            </div>
+          </div>
+        </a>
 
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="recreational">
+  <div class="signup-wrap">
+    <div class="container" style="max-width:900px;">
+      <div class="signup-head reveal">
+        <h1>Recreational Play</h1>
+        <p>Casual, drop-in play for friends and family — no instruction, just court time.</p>
+      </div>
+
+      <div class="price-ref-grid cols-2 reveal">
+        <div class="price-ref-card"><div class="price-ref-amt">$10</div><div class="price-ref-lbl">General</div><div class="price-ref-note">Per session</div></div>
+        <div class="price-ref-card"><div class="price-ref-amt">$5</div><div class="price-ref-lbl">Student Rate</div><div class="price-ref-note">Currently enrolled in a class</div></div>
+      </div>
+
+      <div class="info-panel reveal">
+        <div class="info-panel-head">Important Details</div>
+        <div class="detail-list">
+          <div class="detail-item">
+            <div class="detail-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>
+            <div class="detail-text"><strong>Capacity:</strong> We recommend a maximum of 10 players, since only two courts are allocated for this session. Check the <a href="https://forms.gle/C7fYgT9hfo14zckV6" target="_blank" rel="noopener noreferrer">registration form</a> to see how many people are currently signed up.</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+            <div class="detail-text"><strong>Equipment:</strong> Please bring your own rackets and birdies (equipment is not provided).</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg></div>
+            <div class="detail-text"><strong>Supervision &amp; Practice:</strong> Coaches will be present on-site practicing on their own courts and are not providing instruction or supervision. Participants and parents are fully responsible for themselves and their children.</div>
+          </div>
         </div>
       </div>
 
+      <h3 class="classes-title reveal" style="font-size:1.35rem;">Available Session</h3>
+      <div class="class-list">
+
+        <a class="class-card reveal" href="https://forms.gle/C7fYgT9hfo14zckV6" target="_blank" rel="noopener noreferrer">
+          <div class="class-card-bar"></div>
+          <div class="class-card-body">
+            <div class="class-meta-grid">
+              <div class="class-meta-item">
+                <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg></div>
+                <div><div class="class-meta-label">Location</div><div class="class-meta-value">121 Joseph Aaron Blvd, Thornhill, ON L4J 6J5</div></div>
+              </div>
+              <div class="class-meta-item">
+                <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg></div>
+                <div><div class="class-meta-label">Class Time</div><div class="class-meta-value">Mondays, 6:00 – 8:00 PM</div></div>
+              </div>
+              <div class="class-meta-item">
+                <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+                <div><div class="class-meta-label">Skill Level</div><div class="class-meta-value">Any</div></div>
+              </div>
+              <div class="class-meta-item">
+                <div class="class-meta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>
+                <div><div class="class-meta-label">Age Group</div><div class="class-meta-value">All Ages</div></div>
+              </div>
+            </div>
+            <div class="class-card-footer">
+              <span class="register-pill">Register Now <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></span>
+            </div>
+          </div>
+        </a>
+
+      </div>
     </div>
   </div>
 </section>
@@ -682,7 +689,7 @@ footer .footer-list a:hover{color:var(--pale);}
       <div class="faq-panel reveal">
         <div class="faq-item">
           <button class="faq-q"><span>Is there a free trial?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-          <div class="faq-a"><div class="faq-a-inner">Yes! Every new member is entitled to one free trial session. No payment required, just sign up and come out. It is a great way to experience the coaching and meet the group before committing to a plan.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes! Every new member is entitled to one free trial class. No payment required, just sign up and come out. It is a great way to experience the coaching and meet the group before committing to a plan.</div></div>
         </div>
         <div class="faq-item">
           <button class="faq-q"><span>How much does it cost to join?</span><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
@@ -742,9 +749,10 @@ footer .footer-list a:hover{color:var(--pale);}
       <div>
         <h3>Quick Links</h3>
         <ul class="footer-list">
+          <li><a href="#classes">Sessions</a></li>
+          <li><a href="#recreational">Recreational</a></li>
           <li><a href="#about">About Us</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="#signup">Join Us Today!</a></li>
         </ul>
       </div>
       <div>
@@ -763,14 +771,16 @@ footer .footer-list a:hover{color:var(--pale);}
 
 <script>
 (function(){
-  var PAGES = ['home','signup','about','faq'];
+  var PAGES = ['home','classes','recreational','about','faq'];
   function getPageFromHash(){
     var h = location.hash.replace('#','');
     return PAGES.indexOf(h) !== -1 ? h : 'home';
   }
   function showPage(id){
     document.querySelectorAll('.page').forEach(function(p){ p.classList.toggle('active', p.id === id); });
-    document.querySelectorAll('.nav-link').forEach(function(a){ a.classList.toggle('active', a.dataset.page === id); });
+    document.querySelectorAll('.nav-link, .nav-dropdown-menu a').forEach(function(a){ a.classList.toggle('active', a.dataset.page === id); });
+    document.getElementById('programsTrigger').classList.toggle('active', id === 'classes' || id === 'recreational');
+    document.getElementById('programsDropdown').classList.remove('open');
     window.scrollTo(0,0);
     document.body.classList.remove('menu-open');
     hamburger.setAttribute('aria-expanded','false');
@@ -784,8 +794,17 @@ footer .footer-list a:hover{color:var(--pale);}
     var open = document.body.classList.toggle('menu-open');
     hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
-  document.querySelectorAll('.nav-link, .nav-register').forEach(function(a){
+  document.querySelectorAll('.nav-link, .nav-dropdown-menu a').forEach(function(a){
     a.addEventListener('click', function(){ document.body.classList.remove('menu-open'); });
+  });
+
+  var programsDropdown = document.getElementById('programsDropdown');
+  document.getElementById('programsTrigger').addEventListener('click', function(e){
+    e.stopPropagation();
+    programsDropdown.classList.toggle('open');
+  });
+  document.addEventListener('click', function(e){
+    if (!programsDropdown.contains(e.target)) programsDropdown.classList.remove('open');
   });
 
   var header = document.getElementById('siteHeader');
