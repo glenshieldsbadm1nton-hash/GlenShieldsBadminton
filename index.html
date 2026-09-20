@@ -794,7 +794,7 @@ footer .footer-list a:hover{color:var(--pale);}
     var open = document.body.classList.toggle('menu-open');
     hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
-  document.querySelectorAll('.nav-link, .nav-dropdown-menu a').forEach(function(a){
+  document.querySelectorAll('.nav-link:not(.nav-dropdown-trigger), .nav-dropdown-menu a').forEach(function(a){
     a.addEventListener('click', function(){ document.body.classList.remove('menu-open'); });
   });
 
