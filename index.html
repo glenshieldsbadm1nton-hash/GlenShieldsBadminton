@@ -275,6 +275,81 @@ h2.section-title{font-size:clamp(1.8rem,3.2vw,2.4rem);margin-bottom:12px;}
 .faq-contact a{color:var(--teal);font-weight:600;}
 .faq-contact a:hover{color:var(--navy);}
 
+/* schedule calendar */
+.sched-legend{display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:center;margin-bottom:22px;}
+.legend-item{display:inline-flex;align-items:center;gap:8px;font-size:.88rem;font-weight:500;color:rgba(17,53,71,.85);}
+.legend-swatch{width:14px;height:14px;border-radius:4px;flex-shrink:0;}
+.sw-mon{background:var(--pale);border:1.5px solid var(--sky);}
+.sw-tue{background:var(--teal);}
+.sw-wed{background:var(--navy);}
+.cal{background:#fff;border:1px solid rgba(100,194,236,.3);border-radius:16px;box-shadow:0 1px 2px rgba(17,53,71,.05),0 12px 34px rgba(17,53,71,.08);overflow:hidden;}
+.cal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--navy);color:#fff;padding:14px 18px;}
+.cal-title{font-family:var(--font-display);font-weight:700;font-size:1.35rem;color:#fff;text-align:center;flex:1;}
+.cal-ctrl{display:flex;align-items:center;gap:8px;}
+.cal-btn{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;display:flex;align-items:center;justify-content:center;transition:background .2s ease,opacity .2s ease;}
+.cal-btn:hover:not(:disabled){background:rgba(255,255,255,.25);}
+.cal-btn:disabled{opacity:.3;cursor:not-allowed;}
+.cal-today{height:40px;padding:0 16px;border-radius:999px;background:rgba(255,255,255,.12);color:#fff;font-weight:600;font-size:.82rem;transition:background .2s ease;}
+.cal-today:hover{background:rgba(255,255,255,.25);}
+.cal-dow,.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));}
+.cal-dow{background:var(--tint);border-bottom:1px solid rgba(100,194,236,.3);}
+.cal-dow div{padding:10px 0;text-align:center;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);}
+.cal-cell{min-height:112px;padding:8px;border-right:1px solid rgba(100,194,236,.2);border-bottom:1px solid rgba(100,194,236,.2);display:flex;flex-direction:column;gap:4px;min-width:0;}
+.cal-cell:nth-child(7n){border-right:none;}
+.cal-cell.blank{background:rgba(240,251,255,.55);}
+.cal-cell.past{background:rgba(17,53,71,0.04);color:rgba(17,53,71,0.7);}
+.cal-cell.past .cal-num{color:rgba(17,53,71,0.45);}
+.cal-cell.past .cal-ev{opacity:0.85;}
+.cal-num{font-size:.82rem;font-weight:600;color:rgba(17,53,71,.6);width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:50%;}
+.cal-cell.today .cal-num{background:var(--teal);color:#fff;}
+.cal-ev{display:block;width:100%;text-align:left;border-radius:8px;padding:6px 8px;line-height:1.25;transition:transform .2s var(--ease),box-shadow .2s ease;}
+.cal-ev:hover{transform:translateY(-1px);box-shadow:0 6px 14px rgba(17,53,71,.2);}
+.ev-name{display:block;font-weight:700;font-size:.8rem;}
+.ev-name .short{display:none;}
+.ev-time{display:block;font-size:.68rem;opacity:.85;margin-top:1px;}
+.ev-mon{background:var(--pale);color:var(--navy);border:1.5px solid var(--sky);}
+.ev-tue{background:var(--teal);color:#fff;border:1.5px solid var(--teal);}
+.ev-wed{background:var(--navy);color:#fff;border:1.5px solid var(--navy);}
+.sched-foot{text-align:center;color:rgba(17,53,71,.65);font-size:.9rem;margin-top:20px;}
+
+/* session modal */
+body.modal-open{overflow:hidden;}
+.modal-overlay{position:fixed;inset:0;z-index:1500;background:rgba(17,53,71,.62);display:none;align-items:center;justify-content:center;padding:20px;overflow-y:auto;}
+.modal-overlay.open{display:flex;animation:pagein .25s var(--ease);}
+.modal{background:#fff;border-radius:16px;width:100%;max-width:520px;max-height:calc(100vh - 40px);overflow-y:auto;box-shadow:0 30px 70px rgba(0,0,0,.35);margin:auto;}
+.modal-top{position:relative;padding:24px 56px 22px 26px;color:#fff;}
+.modal-top.t-mon{background:var(--sky);color:var(--navy);}
+.modal-top.t-tue{background:var(--teal);}
+.modal-top.t-wed{background:var(--navy);}
+.modal-badge{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.2);margin-bottom:10px;}
+.modal-top.t-mon .modal-badge{background:rgba(17,53,71,.12);}
+.modal-top h2{color:inherit;font-size:1.45rem;margin-bottom:4px;}
+.modal-when{font-size:.95rem;opacity:.92;}
+.modal-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);color:inherit;display:flex;align-items:center;justify-content:center;transition:background .2s ease;}
+.modal-close:hover{background:rgba(255,255,255,.35);}
+.modal-body{padding:24px 26px 6px;}
+.modal-body .detail-text{padding-top:4px;}
+.modal-body .detail-list{gap:18px;}
+.modal-actions{padding:20px 26px 26px;display:flex;flex-direction:column;gap:10px;}
+.modal-more{text-align:center;font-size:.88rem;color:var(--teal);font-weight:600;text-decoration:underline;text-underline-offset:2px;}
+
+@media (max-width:640px){
+  .cal-head{padding:12px;}
+  .cal-title{font-size:1.1rem;}
+  .cal-today{padding:0 12px;}
+  .cal-cell{min-height:74px;padding:4px 3px;gap:3px;}
+  .cal-num{width:22px;height:22px;font-size:.72rem;align-self:center;}
+  .cal-ev{padding:5px 2px;text-align:center;border-radius:6px;}
+  .ev-name{font-size:.62rem;}
+  .ev-name .long{display:none;}
+  .ev-name .short{display:inline;}
+  .ev-time{display:none;}
+  .cal-dow div{font-size:.62rem;letter-spacing:.03em;}
+  .modal-top{padding:22px 52px 20px 20px;}
+  .modal-body{padding:20px 20px 4px;}
+  .modal-actions{padding:18px 20px 22px;}
+}
+
 /* footer */
 footer{background:var(--navy);color:rgba(255,255,255,.78);padding:56px 0 0;}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;}
@@ -328,6 +403,7 @@ footer .footer-list a:hover{color:var(--pale);}
           <a href="#classes" data-page="classes">Coached Sessions</a>
         </div>
       </div>
+      <a href="#schedule" class="nav-link" data-page="schedule">Schedule</a>
       <a href="#about" class="nav-link" data-page="about">About Us</a>
       <a href="#faq" class="nav-link" data-page="faq">FAQ</a>
     </nav>
@@ -455,6 +531,39 @@ footer .footer-list a:hover{color:var(--pale);}
           <div class="review-attr">— Stephen Wang</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="page" id="schedule">
+  <div class="signup-wrap">
+    <div class="container" style="max-width:1000px;">
+      <div class="signup-head reveal">
+        <h1>Schedule</h1>
+        <p>Monday to Wednesday evenings, September 2026 to June 2027. Tap any session for the location, time, and sign-up link.</p>
+        <span class="eyebrow-badge">New member? Your first class is completely FREE</span>
+      </div>
+
+      <div class="sched-legend reveal" aria-label="Legend">
+        <span class="legend-item"><span class="legend-swatch sw-mon"></span>Monday &middot; Recreational (drop-in play)</span>
+        <span class="legend-item"><span class="legend-swatch sw-tue"></span>Tuesday &middot; Class (Concord)</span>
+        <span class="legend-item"><span class="legend-swatch sw-wed"></span>Wednesday &middot; Class (Thornhill)</span>
+      </div>
+
+      <div class="cal reveal" id="cal">
+        <div class="cal-head">
+          <button class="cal-btn" id="calPrev" aria-label="Previous month"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <h2 class="cal-title" id="calTitle" aria-live="polite"></h2>
+          <div class="cal-ctrl">
+            <button class="cal-today" id="calToday">Today</button>
+            <button class="cal-btn" id="calNext" aria-label="Next month"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+        <div class="cal-dow"><div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div></div>
+        <div class="cal-grid" id="calGrid"></div>
+      </div>
+      <p class="sched-foot">Don&rsquo;t see a session on a given date? There&rsquo;s no session that day.</p>
     </div>
   </div>
 </section>
@@ -758,6 +867,7 @@ footer .footer-list a:hover{color:var(--pale);}
       <div>
         <h3>Quick Links</h3>
         <ul class="footer-list">
+          <li><a href="#schedule">Schedule</a></li>
           <li><a href="#classes">Sessions</a></li>
           <li><a href="#recreational">Recreational</a></li>
           <li><a href="#about">About Us</a></li>
@@ -780,7 +890,7 @@ footer .footer-list a:hover{color:var(--pale);}
 
 <script>
 (function(){
-  var PAGES = ['home','classes','recreational','about','faq'];
+  var PAGES = ['home','schedule','classes','recreational','about','faq'];
   function getPageFromHash(){
     var h = location.hash.replace('#','');
     return PAGES.indexOf(h) !== -1 ? h : 'home';
@@ -872,6 +982,222 @@ footer .footer-list a:hover{color:var(--pale);}
     updateHeader();
     checkReveals();
   });
+})();
+</script>
+
+<!-- session detail modal -->
+<div class="modal-overlay" id="sessModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="sessTitle" id="sessDialog"></div>
+</div>
+
+<script>
+(function(){
+  var MONTHS = {Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
+  var MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+  var ICON = {
+    pin:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>',
+    clock:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>',
+    bolt:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',
+    people:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>',
+    tag:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.6 13.4l-7.2 7.2a2 2 0 01-2.8 0L3 13V3h10l7.6 7.6a2 2 0 010 2.8z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg>',
+    info:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>',
+    arrow:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>',
+    close:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>'
+  };
+
+  var CLASS_NOTES = 'Your first class is free if you\u2019re a new member. After that, drop in for $25 or join the 9-class term for $180. Bring your own racket if you can (coaches have a few spares); indoor court shoes are recommended.';
+  var REC_NOTES = 'Recommended maximum of 10 players (two courts). Check the registration form to see how many people are signed up. Bring your own rackets and birdies. Coaches are on site practicing on their own courts and are not providing instruction or supervision.';
+
+  // Dates are written as "Month day, day, ..." groups separated by |. Sep–Dec = 2026, Jan–Jun = 2027.
+  var SESSIONS = {
+    mon: {
+      cls:'mon', kind:'Recreational', shortKind:'Rec', weekday:'Monday', timeLabel:'6:00 \u2013 8:00 PM', chipTime:'6\u20138 pm',
+      venue:'Charlton Public School', address:'121 Joseph Aaron Blvd, Thornhill, ON L4J 6J5',
+      level:'Any skill level', age:'All ages',
+      price:'$10 per session ($5 for students)', notes:REC_NOTES,
+      signup:'https://forms.gle/C7fYgT9hfo14zckV6', signupLabel:'Sign Up for Recreational Play',
+      page:'recreational', pageLabel:'More about Recreational Play',
+      dates:'Sep 21, 28|Oct 5, 19, 26|Nov 2, 9, 16, 23, 30|Dec 7, 14|Jan 4, 11, 18, 25|Feb 1, 8, 22|Mar 1, 8, 22|Apr 5, 12, 19, 26|May 3, 10, 17, 31|Jun 7'
+    },
+    tue: {
+      cls:'tue', kind:'Class', shortKind:'Class', weekday:'Tuesday', timeLabel:'8:15 \u2013 10:15 PM', chipTime:'8:15\u201310:15 pm',
+      venue:'Our Lady of the Rosary Catholic Elementary School', address:'206 Glen Shields Ave, Concord, ON L4K 2E5',
+      level:'Beginner \u2013 Intermediate', age:'Ages 12+',
+      price:'Free first class \u00b7 $25 drop-in \u00b7 $180 per 9-class term', notes:CLASS_NOTES,
+      signup:'https://docs.google.com/forms/d/e/1FAIpQLScOL2CS15SLxiahfSs6LG8EtMnNUNrjl-bM8-q2-SsE4IVmVA/viewform?usp=publish-editor', signupLabel:'Register for This Class',
+      page:'classes', pageLabel:'More about Coached Sessions',
+      dates:'Sep 22, 29|Oct 6, 13, 20, 27|Nov 3, 10, 17, 24|Dec 1, 8, 15|Jan 5, 12, 19, 26|Feb 2, 9, 16, 23|Mar 2, 9, 23, 30|Apr 6, 13, 20, 27|May 4, 11, 18, 25|Jun 1, 8'
+    },
+    wed: {
+      cls:'wed', kind:'Class', shortKind:'Class', weekday:'Wednesday', timeLabel:'6:00 \u2013 8:00 PM', chipTime:'6\u20138 pm',
+      venue:'St. Elizabeth Catholic High School', address:'525 New Westminster Dr, Thornhill, ON L4J 7X3',
+      level:'Beginner \u2013 Intermediate', age:'Ages 6 \u2013 16',
+      price:'Free first class \u00b7 $25 drop-in \u00b7 $180 per 9-class term', notes:CLASS_NOTES,
+      signup:'https://docs.google.com/forms/d/e/1FAIpQLScg3slX58e1-eLvPfIIutQi72CKu1XyQnqsGbQRHQgkZVG_rQ/viewform?usp=dialog', signupLabel:'Register for This Class',
+      page:'classes', pageLabel:'More about Coached Sessions',
+      dates:'Sep 23, 30|Oct 7, 14, 21, 28|Nov 4, 11, 18, 25|Dec 2, 9, 16|Jan 6, 13, 20, 27|Feb 3, 10, 17, 24|Mar 3, 10, 24, 31|Apr 7, 14, 21, 28|May 5, 12, 19, 26|Jun 2, 9'
+    }
+  };
+
+  function pad(n){ return (n < 10 ? '0' : '') + n; }
+  function keyOf(y, m, d){ return y + '-' + pad(m + 1) + '-' + pad(d); }
+  function getTodayKey(){
+    var n = new Date();
+    return keyOf(n.getFullYear(), n.getMonth(), n.getDate());
+  }
+
+  var EVENTS = {};
+  var minKey = null, maxKey = null;
+  Object.keys(SESSIONS).forEach(function(id){
+    SESSIONS[id].dates.split('|').forEach(function(group){
+      var t = group.replace(/,/g, ' ').trim().split(/\s+/);
+      var m = MONTHS[t[0]];
+      var y = m >= 8 ? 2026 : 2027;
+      t.slice(1).forEach(function(d){
+        var k = keyOf(y, m, parseInt(d, 10));
+        EVENTS[k] = id;
+        if (!minKey || k < minKey) minKey = k;
+        if (!maxKey || k > maxKey) maxKey = k;
+      });
+    });
+  });
+
+  var first = { y:+minKey.slice(0,4), m:+minKey.slice(5,7) - 1 };
+  var last  = { y:+maxKey.slice(0,4), m:+maxKey.slice(5,7) - 1 };
+  function idx(o){ return o.y * 12 + o.m; }
+
+  var now = new Date();
+  var view = { y: now.getFullYear(), m: now.getMonth() };
+  function clampView(){
+    if (idx(view) < idx(first)) view = { y:first.y, m:first.m };
+    if (idx(view) > idx(last))  view = { y:last.y,  m:last.m };
+  }
+  clampView();
+
+  var grid = document.getElementById('calGrid');
+  var title = document.getElementById('calTitle');
+  var prevBtn = document.getElementById('calPrev');
+  var nextBtn = document.getElementById('calNext');
+  var todayBtn = document.getElementById('calToday');
+
+  function render(){
+    var todayKey = getTodayKey();
+    title.textContent = MONTH_NAMES[view.m] + ' ' + view.y;
+    prevBtn.disabled = idx(view) <= idx(first);
+    nextBtn.disabled = idx(view) >= idx(last);
+
+    var firstDow = new Date(view.y, view.m, 1).getDay();
+    var days = new Date(view.y, view.m + 1, 0).getDate();
+    var html = '';
+    for (var i = 0; i < firstDow; i++) html += '<div class="cal-cell blank"></div>';
+    for (var d = 1; d <= days; d++){
+      var k = keyOf(view.y, view.m, d);
+      var id = EVENTS[k];
+      var isPast = k < todayKey;
+      var isToday = k === todayKey;
+      var cellClass = 'cal-cell';
+      if (isToday) cellClass += ' today';
+      if (isPast) cellClass += ' past';
+
+      html += '<div class="' + cellClass + '"><span class="cal-num">' + d + '</span>';
+      if (id){
+        var s = SESSIONS[id];
+        var dow = new Date(view.y, view.m, d).getDay();
+        html += '<button class="cal-ev ev-' + s.cls + '" data-date="' + k + '" data-session="' + id + '" aria-label="' +
+          s.kind + ', ' + DAY_NAMES[dow] + ' ' + MONTH_NAMES[view.m] + ' ' + d + ', ' + s.timeLabel + '. View details">' +
+          '<span class="ev-name"><span class="long">' + s.kind + '</span><span class="short">' + s.shortKind + '</span></span>' +
+          '<span class="ev-time">' + s.chipTime + '</span></button>';
+      }
+      html += '</div>';
+    }
+    var used = firstDow + days;
+    var tail = (7 - (used % 7)) % 7;
+    for (var j = 0; j < tail; j++) html += '<div class="cal-cell blank"></div>';
+    grid.innerHTML = html;
+  }
+
+  prevBtn.addEventListener('click', function(){ view.m--; if (view.m < 0){ view.m = 11; view.y--; } render(); });
+  nextBtn.addEventListener('click', function(){ view.m++; if (view.m > 11){ view.m = 0; view.y++; } render(); });
+  todayBtn.addEventListener('click', function(){
+    var n = new Date();
+    view = { y:n.getFullYear(), m:n.getMonth() };
+    clampView();
+    render();
+  });
+
+  /* modal */
+  var overlay = document.getElementById('sessModal');
+  var dialog = document.getElementById('sessDialog');
+  var lastFocus = null;
+
+  function row(icon, html){
+    return '<div class="detail-item"><div class="detail-icon">' + icon + '</div><div class="detail-text">' + html + '</div></div>';
+  }
+  function openModal(id, dateKey, trigger){
+    var s = SESSIONS[id];
+    var y = +dateKey.slice(0,4), m = +dateKey.slice(5,7) - 1, d = +dateKey.slice(8,10);
+    var dow = new Date(y, m, d).getDay();
+    var pretty = DAY_NAMES[dow] + ', ' + MONTH_NAMES[m] + ' ' + d + ', ' + y;
+    var maps = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.venue + ', ' + s.address);
+
+    dialog.innerHTML =
+      '<div class="modal-top t-' + s.cls + '">' +
+        '<span class="modal-badge">' + s.kind + '</span>' +
+        '<h2 id="sessTitle">' + s.venue + '</h2>' +
+        '<div class="modal-when">' + pretty + ' &middot; ' + s.timeLabel + '</div>' +
+        '<button class="modal-close" id="sessClose" aria-label="Close">' + ICON.close + '</button>' +
+      '</div>' +
+      '<div class="modal-body"><div class="detail-list">' +
+        row(ICON.pin, '<strong>Location</strong><br>' + s.venue + '<br>' + s.address + '<br><a href="' + maps + '" target="_blank" rel="noopener noreferrer">Get directions</a>') +
+        row(ICON.clock, '<strong>Time</strong><br>' + pretty + '<br>' + s.timeLabel) +
+        row(ICON.bolt, '<strong>Skill level</strong><br>' + s.level) +
+        row(ICON.people, '<strong>Age group</strong><br>' + s.age) +
+        row(ICON.tag, '<strong>Cost</strong><br>' + s.price) +
+        row(ICON.info, '<strong>Good to know</strong><br>' + s.notes) +
+      '</div></div>' +
+      '<div class="modal-actions">' +
+        '<a class="btn btn-primary btn-block" href="' + s.signup + '" target="_blank" rel="noopener noreferrer">' + s.signupLabel + ' ' + ICON.arrow + '</a>' +
+        '<a class="modal-more" href="#' + s.page + '" id="sessMore">' + s.pageLabel + '</a>' +
+      '</div>';
+
+    lastFocus = trigger || document.activeElement;
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    dialog.scrollTop = 0;
+    document.getElementById('sessClose').focus();
+    document.getElementById('sessClose').addEventListener('click', closeModal);
+    document.getElementById('sessMore').addEventListener('click', closeModal);
+  }
+  function closeModal(){
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+    if (lastFocus && document.body.contains(lastFocus) && lastFocus.focus) lastFocus.focus();
+    lastFocus = null;
+  }
+
+  grid.addEventListener('click', function(e){
+    var btn = e.target.closest('.cal-ev');
+    if (btn) openModal(btn.dataset.session, btn.dataset.date, btn);
+  });
+  overlay.addEventListener('click', function(e){ if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', function(e){
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape'){ closeModal(); return; }
+    if (e.key === 'Tab'){
+      var f = dialog.querySelectorAll('a[href], button');
+      if (!f.length) return;
+      var a = f[0], z = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === a){ e.preventDefault(); z.focus(); }
+      else if (!e.shiftKey && document.activeElement === z){ e.preventDefault(); a.focus(); }
+    }
+  });
+  window.addEventListener('hashchange', function(){ if (overlay.classList.contains('open')) closeModal(); });
+
+  render();
 })();
 </script>
 
