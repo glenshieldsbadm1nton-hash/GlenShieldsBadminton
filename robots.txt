@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://glenshieldsbadm1nton-hash.github.io/GlenShieldsBadminton/sitemap.xml
